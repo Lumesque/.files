@@ -1,0 +1,7 @@
+install editor:
+    @[ -d ./{{editor}} ] || (echo -e "\033[31;1;merror: \033[0;4mCould not find editor '\033[1m{{editor}}\033[0;4m' to install...\033[0m" && exit 2)
+    ln -s `pwd`/{{editor}} ~/.config/{{editor}}
+
+clean editor:
+    -[ -L ~/.config/{{editor}} ] && rm -f ~/.config/{{editor}}
+
