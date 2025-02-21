@@ -1,6 +1,6 @@
 install terminal:
     @[ -d ./{{terminal}} ] || (echo -e "\033[31;1;merror: \033[0;4mCould not find terminal '\033[1m{{terminal}}\033[0;4m' to install...\033[0m" && exit 2)
-    @[ -L ~/.config/{{terminal}} ] && (echo -e "\033[31;1;merror: \033[0;4mEditor '\033[1m{{terminal}}\033[0;4m' already softlinked to install...\033[0m" && exit 2) || exit 0
+    @ if [ -L ~/.config/{{terminal}} ] ; then echo -e "\033[31;1;merror: \033[0;4mEditor '\033[1m{{terminal}}\033[0;4m' already softlinked to install...\033[0m" && exit 2 ; fi
     ln -s `pwd`/{{terminal}} ~/.config/{{terminal}}
 
 clean terminal:

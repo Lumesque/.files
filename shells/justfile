@@ -1,0 +1,10 @@
+install shell:
+    @[ -d ./{{shell}} ] || (echo -e "\033[31;1;merror: \033[0;4mCould not find shell '\033[1m{{shell}}\033[0;4m' to install...\033[0m" && exit 2)
+    @ if [ -L ~/.config/{{shell}} ] ; then echo -e "\033[31;1;merror: \033[0;4mEditor '\033[1m{{shell}}\033[0;4m' already softlinked to install...\033[0m" && exit 2 ; fi
+    @[[ "{{shell}}" != "fish" ]] && ( [ ! -f ~/.{{shell}}rc ] || echo "source ~/.config/{{shell}}/.{{shell}}.config" >> ~/.{{shell}}rc ) || exit 0
+    ln -s `pwd`/{{shell}} ~/.config/{{shell}}
+
+clean shell:
+    -sed -i '/{{shell}}.config/d' ~/.{{shell}}rc
+    -[ -L ~/.config/{{shell}} ] && rm -f ~/.config/{{shell}}
+
