@@ -1,5 +1,6 @@
 install editor:
     @[ -d ./{{editor}} ] || (echo -e "\033[31;1;merror: \033[0;4mCould not find editor '\033[1m{{editor}}\033[0;4m' to install...\033[0m" && exit 2)
+    @[ -L ~/.config/{{editor}} ] && (echo -e "\033[31;1;merror: \033[0;4mEditor '\033[1m{{editor}}\033[0;4m' already softlinked to install...\033[0m" && exit 2) || exit 0
     ln -s `pwd`/{{editor}} ~/.config/{{editor}}
 
 clean editor:
