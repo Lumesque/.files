@@ -1,3 +1,3 @@
 function fdd
-    find --type=dir $argv
+    fd --type=dir $argv
 end
