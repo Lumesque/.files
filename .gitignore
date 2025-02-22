@@ -7,3 +7,5 @@ zig-out*
 
 /target
 lazy-lock.json
+
+**/backgrounds

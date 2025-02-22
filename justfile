@@ -2,6 +2,7 @@ ZIGFLAGS := "--summary all"
 EDITOR := "nvim"
 TERMINAL := "ghostty"
 SHELL := "fish"
+DESKTOP := "hypr"
 
 install: install-editor install-terminal install-shell
 clean: clean-editor clean-terminal clean-shell
