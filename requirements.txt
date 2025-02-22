@@ -1,0 +1,7 @@
+git
+fzf
+fd
+ripgrep
+fish
+nvim | neovim
+just
