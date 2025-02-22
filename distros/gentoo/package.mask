@@ -1,0 +1,13 @@
+# We want to use kde frameworks for desktop style, so don't do the most up to date qtdeclaritive
+#>=dev-qt/qt-declaritive-6.9999
+
+# This is so that refind uses a non-updated gnu-efi, as right now it relies on the highest but the sign tools don't
+>=sys-boot/gnu-efi-4.0.0
+
+# Don't install these and prefer sources, only unmask these if necessary
+sys-kernel/gentoo-kernel-bin
+sys-kernel/gentoo-kernel
+
+# This is required for steam currently as of 02/08/2025
+# UPDATE this is no longer required, as it was a case of the X flag that was missing
+#>=sys-apps/dbus-1.16.0

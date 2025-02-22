@@ -1,0 +1,5 @@
+install distro:
+    just ./{{distro}} install
+
+clean distro:
+    just ./{{distro}} clean
