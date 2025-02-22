@@ -6,3 +6,4 @@ zig-out*
 # Added by cargo
 
 /target
+lazy-lock.json
