@@ -4,8 +4,8 @@ TERMINAL := "ghostty"
 SHELL := "fish"
 DESKTOP := "hypr"
 
-install: install-editor install-terminal install-shell
-clean: clean-editor clean-terminal clean-shell
+install: install-editor install-terminal install-shell install-git
+clean: clean-editor clean-terminal clean-shell clean-git
 
 [group('install-commands')]
 install-editor:
@@ -20,12 +20,20 @@ install-shell:
     just shells/install {{SHELL}}
 
 [group('install-commands')]
+install-git:
+    [ ! -f ~/.gitconfig ] && cp ./.gitconfig ~ || echo "git config already installed"
+
+[group('install-commands')]
 install-desktop:
     just desktop/install {{DESKTOP}}
 
 [group('clean-commands')]
 clean-editor:
     just editors/clean {{EDITOR}}
+
+[group('clean-commands')]
+clean-git:
+    echo "Clean git is not recommended."
 
 [group('clean-commands')]
 clean-terminal:
