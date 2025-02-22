@@ -3,5 +3,6 @@ fzf
 fd
 ripgrep
 fish
+ghostty
 nvim | neovim
 just
