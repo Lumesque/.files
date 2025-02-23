@@ -1,61 +1,40 @@
-ZIGFLAGS := "--summary all"
 EDITOR := "nvim"
 TERMINAL := "ghostty"
 SHELL := "fish"
 
 
-[group('a:fresh-install')]
-install: install-editor install-terminal install-shell install-git
-[group('a:fresh-install')]
-clean: clean-editor clean-terminal clean-shell clean-git
+[group('install')]
+install location name:
+    just {{location}}/install {{name}}
 
-[group('install-commands')]
-install-editor:
-    just editors/install {{EDITOR}}
+[group('clean')]
+clean location name:
+    just {{location}}/clean {{name}}
 
-[group('install-commands')]
-install-terminal:
-    just terminals/install {{TERMINAL}}
+[group('sync')]
+sync location name:
+    just {{location}}/sync {{name}}
 
-[group('install-commands')]
-install-shell:
-    just shells/install {{SHELL}}
+[group('fresh-install')]
+install-default:
+    just install terminals {{TERMINAL}}
+    just install shells {{SHELL}}
+    just install editors {{EDITOR}}
 
-[group('install-commands')]
+[group('fresh-install')]
+install-full desktop distro:
+    just install-default
+    just install-{{desktop}}
+    just install-{{distro}}
+
+# This is a work in progress, need a better merge/sync
+[group('install')]
 install-git:
     [ ! -f ~/.gitconfig ] && cp ./.gitconfig ~ || echo "git config already installed"
-
-[group('install-commands')]
-install-desktop desktop:
-    just desktop/install {{desktop}}
-
-[group('install-commands')]
-install-distro distro:
-    just distros/install {{distro}}
-
-[group('clean-commands')]
-clean-editor:
-    just editors/clean {{EDITOR}}
 
 [group('clean-commands')]
 clean-git:
     echo "Clean git is not recommended."
-
-[group('clean-commands')]
-clean-terminal:
-    just terminals/clean {{TERMINAL}}
-
-[group('clean-commands')]
-clean-shell:
-    just shells/clean {{SHELL}}
-
-[group('clean-commands')]
-clean-desktop desktop:
-    just desktop/clean {{desktop}}
-
-[group('clean-commands')]
-clean-distros distro:
-    just distros/clean {{distro}}
 
 [group('setup')]
 setup-for-install category config_to_copy:
@@ -84,10 +63,6 @@ setup-distro-pkgs distro cmd:
         fi \
     done
 
-[group('sync')]
-sync location name:
-    just {{location}}/sync {{name}}
-
 [group('gentoo')]
 sync-gentoo:
     just setup-distro-pkgs gentoo 'equery check'
@@ -96,15 +71,15 @@ sync-gentoo:
 [group('gentoo')]
 install-gentoo: 
     just setup-distro-pkgs gentoo 'equery check'
-    just install-distros gentoo
+    just install distros gentoo
 
 [group('gentoo')]
 clean-gentoo: 
-    just clean-distros gentoo
+    just clean distros gentoo
 
 [group('hyprland')]
 install-hyprland:
-    just install-desktop hyprland
+    just install desktop hyprland
 
 [group('hyprland')]
 sync-hyprland:
@@ -112,4 +87,4 @@ sync-hyprland:
 
 [group('hyprland')]
 clean-hyprland:
-    just clean-desktop hyprland
+    just clean desktop hyprland
