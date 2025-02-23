@@ -4,7 +4,10 @@ TERMINAL := "ghostty"
 SHELL := "fish"
 DESKTOP := "hypr"
 
+
+[group('a:fresh-install')]
 install: install-editor install-terminal install-shell install-git
+[group('a:fresh-install')]
 clean: clean-editor clean-terminal clean-shell clean-git
 
 [group('install-commands')]
@@ -27,6 +30,10 @@ install-git:
 install-desktop:
     just desktop/install {{DESKTOP}}
 
+[group('install-commands')]
+install-distro distro:
+    just distros/install {{distro}}
+
 [group('clean-commands')]
 clean-editor:
     just editors/clean {{EDITOR}}
@@ -46,6 +53,10 @@ clean-shell:
 [group('clean-commands')]
 clean-desktop:
     just desktop/clean {{DESKTOP}}
+
+[group('clean-commands')]
+clean-distros distro:
+    just distros/clean {{distro}}
 
 [group('setup')]
 setup-for-install category config_to_copy:
@@ -74,9 +85,20 @@ setup-distro-pkgs distro cmd:
         fi \
     done
 
+[group('sync')]
 sync distro:
     just distros/sync {{distro}}
 
+[group('gentoo')]
 sync-gentoo:
     just setup-distro-pkgs gentoo 'equery check'
     just sync gentoo
+    
+[group('gentoo')]
+install-gentoo: 
+    just setup-distro-pkgs gentoo 'equery check'
+    just install-distros gentoo
+
+[group('gentoo')]
+clean-gentoo: 
+    just clean-distros gentoo
