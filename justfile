@@ -2,7 +2,6 @@ ZIGFLAGS := "--summary all"
 EDITOR := "nvim"
 TERMINAL := "ghostty"
 SHELL := "fish"
-DESKTOP := "hypr"
 
 
 [group('a:fresh-install')]
@@ -27,8 +26,8 @@ install-git:
     [ ! -f ~/.gitconfig ] && cp ./.gitconfig ~ || echo "git config already installed"
 
 [group('install-commands')]
-install-desktop:
-    just desktop/install {{DESKTOP}}
+install-desktop desktop:
+    just desktop/install {{desktop}}
 
 [group('install-commands')]
 install-distro distro:
@@ -51,8 +50,8 @@ clean-shell:
     just shells/clean {{SHELL}}
 
 [group('clean-commands')]
-clean-desktop:
-    just desktop/clean {{DESKTOP}}
+clean-desktop desktop:
+    just desktop/clean {{desktop}}
 
 [group('clean-commands')]
 clean-distros distro:
@@ -86,13 +85,13 @@ setup-distro-pkgs distro cmd:
     done
 
 [group('sync')]
-sync distro:
-    just distros/sync {{distro}}
+sync location name:
+    just {{location}}/sync {{name}}
 
 [group('gentoo')]
 sync-gentoo:
     just setup-distro-pkgs gentoo 'equery check'
-    just sync gentoo
+    just sync distros gentoo
     
 [group('gentoo')]
 install-gentoo: 
@@ -102,3 +101,15 @@ install-gentoo:
 [group('gentoo')]
 clean-gentoo: 
     just clean-distros gentoo
+
+[group('hyprland')]
+install-hyprland:
+    just install-desktop hyprland
+
+[group('hyprland')]
+sync-hyprland:
+    just sync desktop hyprland
+
+[group('hyprland')]
+clean-hyprland:
+    just clean-desktop hyprland

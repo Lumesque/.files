@@ -1,0 +1,14 @@
+install:
+    cp -r ./hypr ~/.config/hypr
+    cp -r ./fuzzel  ~/.config/fuzzel
+    cp -r ./waybar  ~/.config/waybar
+
+sync:
+    cp -r ~/.config/hypr ./hypr 
+    cp -r ~/.config/fuzzel ./fuzzel 
+    cp -r ~/.config/waybar ./waybar 
+
+clean:
+    rm -rf ~/.config/hypr ./hypr 
+    rm -rf ~/.config/fuzzel ./fuzzel 
+    rm -rf ~/.config/waybar ./waybar 
