@@ -1,5 +1,8 @@
 install distro:
-    just ./{{distro}} install
+    just ./{{distro}}/install
+
+sync distro:
+    just ./{{distro}}/sync
 
 clean distro:
-    just ./{{distro}} clean
+    just ./{{distro}}/clean

@@ -63,3 +63,20 @@ setup-for-install category config_to_copy:
         exit 2
     fi
     cp -r {{config_to_copy}} ./{{category}}/
+
+[group('setup')]
+setup-distro-pkgs distro cmd:
+    [ -d ./distros/{{distro}} ]
+    -rm -f ./distros/{{distro}}/requirements.txt
+    for i in $(cat ./requirements.txt | tr '|' '\n') ; do \
+        if {{cmd}} $i ; then \
+            echo "$i" >> ./distros/{{distro}}/requirements.txt ; \
+        fi \
+    done
+
+sync distro:
+    just distros/sync {{distro}}
+
+sync-gentoo:
+    just setup-distro-pkgs gentoo 'equery check'
+    just sync gentoo
