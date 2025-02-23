@@ -1,0 +1,22 @@
+install:
+    cp -r ./make.conf /etc/portage/make.conf
+    cp -r ./package.env /etc/portage/package.env
+    cp -r ./package.mask /etc/portage/package.mask
+    cp -r ./package.use /etc/portage/package.use
+    cp -r ./package.accept_keywords /etc/portage/package.accept_keywords
+    emerge --deep $(cat ./requirements.txt | tr '\n' ' ')
+
+sync:
+    cp -r /etc/portage/make.conf ./make.conf 
+    cp -r /etc/portage/package.env ./package.env 
+    cp -r /etc/portage/package.mask ./package.mask 
+    cp -r /etc/portage/package.use ./package.use 
+    cp -r /etc/portage/package.accept_keywords ./package.accept_keywords 
+
+clean:
+    rm -f /etc/portage/make.conf
+    rm -f /etc/portage/package.env
+    rm -f /etc/portage/package.mask
+    rm -f /etc/portage/package.use
+    rm -f /etc/portage/package.accept_keywords
+

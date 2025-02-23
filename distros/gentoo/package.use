@@ -1,0 +1,284 @@
+# SYSTEM PACKAGES #
+sys-apps/portage native-extensions ipc # these are needed
+dev-lang/perl -minimal # you can't use perl installation scripts with minimal
+sys-devel/gcc nptl cxx # these are defaults for gcc
+sys-libs/glibc multiarch # this increases performance
+dev-libs/ncurses tinfo # needed to recognize terminal
+net-misc/dhcpcd embedded # for minimal dhcpcd
+app-arch/xz-utils extra-filters	# needed for kernel
+sys-firmware/intel-microcode split-ucode # needed for microcode
+sys-kernel/linux-firmware savedconfig redistributable compress-xz # needed for nvidia-firmware
+sys-kernel/gentoo-sources symlink experimental # needed to optimize for our cpu
+media-video/pipewire pipewire-alsa sound-server # needed for sound to work
+sys-auth/seatd server # for wayland login
+sys-apps/util-linux su pam suid # for root login
+x11-drivers/nvidia-drivers driver modules static-libs wayland abi_x86_32 # all of them needed, last one for steam
+sys-fs/ntfs3g fuse mount-ntfs # for external hdd
+sys-fs/fuse suid
+net-misc/curl http2 ssl openssl curl_ssl_openssl # for git sync
+dev-vcs/git curl # for git sync
+sys-apps/systemd-utils tmpfiles # dependency
+dev-libs/glib mime # not recommended to disable by package
+dev-lang/python ensurepip ssl sqlite ncurses # needed as dependency
+
+# DEFAULT APPS (these are default apps for Gentoo)#
+app-alternatives/awk gawk
+app-alternatives/bzip2 reference 
+app-alternatives/gzip reference 
+app-alternatives/sh bash 
+app-alternatives/tar gnu 
+app-alternatives/yacc bison 
+app-alternatives/lex flex
+app-alternatives/bc gnu 
+app-alternatives/cpio gnu 
+
+# FONT RENDERING (these are basically needed for all apps) #
+media-libs/freetype adobe-cff cleartype-hinting harfbuzz truetype png
+media-libs/harfbuzz glib icu truetype cairo graphite introspection
+
+# CLANG ENVIRONMENT (needed for compiling firefox or other PGO programs) #
+sys-devel/clang-runtime compiler-rt sanitize
+sys-devel/clang-common default-compiler-rt default-lld
+sys-libs/compiler-rt-sanitizers profile orc
+sys-libs/libunwind static-libs
+
+# WORLD PACKAGES #
+
+# neovim uses luajit by default so we select it#
+app-editors/neovim lua_single_target_luajit
+dev-lua/luv lua_single_target_luajit -lua_single_target_lua5-4
+dev-lua/mpack lua_targets_luajit lua_single_target_luajit
+dev-lua/lpeg lua_targets_luajit lua_single_target_luajit
+dev-lua/lua-cjson internal-fpconv
+
+# packages we install # 
+sys-apps/xdg-desktop-portal screencast
+media-gfx/imv freeimage jpeg png
+media-libs/freeimage webp
+media-sound/mpd ffmpeg
+media-video/ffmpeg dav1d vpx opus encode libass sdl x264 gpl X pulseaudio
+media-libs/libvpx postproc highbitdepth
+media-libs/dav1d 10bit 8bit
+media-video/mpv cli -vulkan egl libplacebo lua nvenc rubberband uchardet iconv lua_single_target_luajit
+media-libs/libplacebo -vulkan opengl # opengl is better with mpv
+net-vpn/openvpn openssl
+net-p2p/qbittorrent qt6 gui
+net-libs/libtorrent-rasterbar dht
+media-gfx/imagemagick corefonts truetype jpeg opencl pango png webp
+www-client/firefox eme-free jumbo-build openh264 dbus
+app-office/libreoffice gtk dbus 
+media-sound/ncmpcpp taglib
+net-vpn/openvpn openssl
+
+# required use flags for our setup #
+# these are added because portage wants them enabled #
+# because we enabled other things above #
+mail-client/neomutt notmuch sasl
+net-mail/isync ssl
+sys-auth/polkit kde daemon qt6 # without these you can't build kde apps or breeze
+x11-libs/gtk+ X introspection wayland
+dev-libs/libpcre2 unicode pcre16
+
+# all of qt packages are needed for hyprland and xdg-portal #
+#dev-qt/qtbase gui egl eglfs libinput udev opengl widgets network dbus ssl xml sql sqlite libproxy icu
+#dev-qt/qtbase egl libinput udev opengl widgets network dbus ssl xml sql sqlite X
+dev-qt/qtbase gui egl eglfs libinput udev opengl widgets network dbus ssl xml sql sqlite wayland libproxy X concurrent -gles2-only icu
+dev-qt/qtgui egl eglfs dbus libinput udev png X
+dev-qt/qtnetwork ssl
+dev-qt/qtsql sqlite
+dev-qt/qtwidgets png
+dev-qt/qtdeclarative widgets opengl sql
+dev-qt/qtcore icu
+dev-qt/qttools linguist opengl widgets qdbus
+dev-qt/qt5compat qml icu
+media-libs/libglvnd X
+x11-libs/cairo X glib aqua
+dev-cpp/cairomm X
+x11-libs/pango X introspection
+app-text/xmlto text
+app-accessibility/at-spi2-core introspection
+media-libs/libepoxy X egl
+x11-libs/gdk-pixbuf introspection
+media-libs/libass fontconfig
+# media-libs/libsdl2 sound video opengl gles2 X
+media-libs/libsdl2 sound video opengl X
+media-libs/mesa X wayland
+# media-libs/mesa gles2 X
+dev-libs/boost zlib nls icu
+media-libs/lsp-plugins lv2
+dev-libs/libxml2 python
+dev-libs/gmime crypt
+media-gfx/qrencode png
+app-arch/libarchive bzip2
+kde-frameworks/kconfig qml dbus
+kde-frameworks/kglobalaccel X
+kde-frameworks/kwindowsystem X wayland
+kde-frameworks/kitemmodels qml
+kde-frameworks/sonnet qml
+sys-libs/libblockdev cryptsetup
+x11-libs/libxkbcommon X wayland
+sys-fs/cryptsetup openssl
+media-libs/mlt xml qt5 frei0r sdl ffmpeg
+media-fonts/fontawesome otf
+app-crypt/gpgme cxx
+app-text/libwpd tools
+dev-libs/xmlsec nss
+media-libs/libpng apng
+media-libs/openh264 plugin
+net-libs/nodejs icu ssl
+gui-libs/wlroots tinywl
+dev-lang/ruby ssl
+app-crypt/gcr gtk
+dev-lang/spidermonkey -clang
+net-im/telegram-desktop fonts qt6 jemalloc
+media-libs/libtgvoip alsa
+sys-libs/zlib minizip# required by gui-apps/swww-0.9.5-r2::guru
+gui-libs/xdg-desktop-portal-hyprland opengl
+sys-kernel/installkernel refind dracut
+net-im/discord wayland
+gui-apps/waybar wayland X pipewire network tray mpd
+dev-cpp/gtkmm:3.0 wayland X
+x11-libs/gtk+ wayland X
+media-libs/tiff opengl
+x11-terms/alacritty wayland
+gui-wm/hyprland X
+dev-libs/libdbusmenu gtk3
+media-fonts/noto-emoji icons X
+media-fonts/noto cjk X
+media-fonts/nerdfonts codenewroman terminus noto
+media-fonts/fontawesome ttf X
+
+## Refind
+sys-boot/refind ext2 ext4 iso9660
+sys-boot/gnu-efi -ext2 -ext4 -iso9660
+
+### Necessary for steam
+games-util/game-device-udev-rules -acl
+app-accessibility/at-spi2-core  abi_x86_32
+app-arch/bzip2                  abi_x86_32
+app-arch/lz4                    abi_x86_32
+app-arch/zstd                   abi_x86_32
+dev-lang/rust-bin               abi_x86_32
+dev-libs/dbus-glib              abi_x86_32
+dev-libs/elfutils               abi_x86_32
+dev-libs/expat                  abi_x86_32
+dev-libs/fribidi                abi_x86_32
+dev-libs/glib                   abi_x86_32
+dev-libs/gmp                    abi_x86_32
+dev-libs/icu                    abi_x86_32
+dev-libs/libevdev               abi_x86_32
+dev-libs/libffi                 abi_x86_32
+dev-libs/libgcrypt              abi_x86_32
+dev-libs/libgpg-error           abi_x86_32
+dev-libs/libpcre2               abi_x86_32
+dev-libs/libtasn1               abi_x86_32
+dev-libs/libunistring           abi_x86_32
+dev-libs/libusb                 abi_x86_32
+dev-libs/libxml2                abi_x86_32
+dev-libs/lzo                    abi_x86_32
+dev-libs/nettle                 abi_x86_32
+dev-libs/nspr                   abi_x86_32
+dev-libs/nss                    abi_x86_32
+dev-libs/openssl                abi_x86_32
+dev-libs/wayland                abi_x86_32
+gnome-base/librsvg              abi_x86_32
+gui-libs/libdecor               abi_x86_32
+llvm-core/llvm                  abi_x86_32
+media-gfx/graphite2             abi_x86_32
+media-libs/alsa-lib             abi_x86_32
+media-libs/flac                 abi_x86_32
+media-libs/fontconfig           abi_x86_32
+media-libs/freetype             abi_x86_32
+media-libs/glu                  abi_x86_32
+media-libs/harfbuzz             abi_x86_32
+media-libs/libepoxy             abi_x86_32
+media-libs/libglvnd             abi_x86_32
+media-libs/libjpeg-turbo        abi_x86_32
+media-libs/libogg               abi_x86_32
+media-libs/libpng               abi_x86_32
+media-libs/libpulse             abi_x86_32
+media-libs/libsdl2              abi_x86_32
+media-libs/libsndfile           abi_x86_32
+media-libs/libva                abi_x86_32
+media-libs/libvorbis            abi_x86_32
+media-libs/mesa                 abi_x86_32
+media-libs/openal               abi_x86_32
+media-libs/opus                 abi_x86_32
+media-libs/tiff                 abi_x86_32
+media-sound/lame                abi_x86_32
+media-sound/mpg123-base         abi_x86_32
+media-video/pipewire            abi_x86_32
+net-dns/c-ares                  abi_x86_32
+net-dns/libidn2                 abi_x86_32
+net-libs/gnutls                 abi_x86_32
+net-libs/libasyncns             abi_x86_32
+net-libs/libndp                 abi_x86_32
+net-libs/libpsl                 abi_x86_32
+net-libs/nghttp2                abi_x86_32
+net-libs/nghttp3                abi_x86_32
+net-misc/curl                   abi_x86_32
+net-misc/networkmanager         abi_x86_32
+net-print/cups                  abi_x86_32
+# This, unlike the other libs requires X, due to other libraries using the X use flag, without it it does not get pulled in correctly by other libraries
+sys-apps/dbus                   abi_x86_32 X
+sys-apps/systemd                abi_x86_32
+sys-apps/systemd-utils          abi_x86_32
+sys-apps/util-linux             abi_x86_32
+sys-devel/clang                 abi_x86_32
+sys-libs/gpm                    abi_x86_32
+sys-libs/libcap                 abi_x86_32
+sys-libs/libudev-compat         abi_x86_32
+sys-libs/ncurses                abi_x86_32
+sys-libs/pam                    abi_x86_32
+sys-libs/zlib                   abi_x86_32
+virtual/glu                     abi_x86_32
+virtual/libelf                  abi_x86_32
+virtual/libiconv                abi_x86_32
+virtual/libintl                 abi_x86_32
+virtual/libudev                 abi_x86_32
+virtual/libusb                  abi_x86_32
+virtual/opengl                  abi_x86_32
+virtual/rust                    abi_x86_32
+x11-libs/cairo                  abi_x86_32
+x11-libs/extest                 abi_x86_32
+x11-libs/gdk-pixbuf             abi_x86_32
+x11-libs/gtk+                   abi_x86_32
+x11-libs/gtk+                   abi_x86_32
+x11-libs/libdrm                 abi_x86_32
+x11-libs/libICE                 abi_x86_32
+x11-libs/libpciaccess           abi_x86_32
+x11-libs/libSM                  abi_x86_32
+x11-libs/libvdpau               abi_x86_32
+x11-libs/libX11                 abi_x86_32
+x11-libs/libXau                 abi_x86_32
+x11-libs/libxcb                 abi_x86_32
+x11-libs/libXcomposite          abi_x86_32
+x11-libs/libXcursor             abi_x86_32
+x11-libs/libXdamage             abi_x86_32
+x11-libs/libXdmcp               abi_x86_32
+x11-libs/libXext                abi_x86_32
+x11-libs/libXfixes              abi_x86_32
+x11-libs/libXft                 abi_x86_32
+x11-libs/libXi                  abi_x86_32
+x11-libs/libXinerama            abi_x86_32
+x11-libs/libxkbcommon           abi_x86_32
+x11-libs/libXrandr              abi_x86_32
+x11-libs/libXrender             abi_x86_32
+x11-libs/libXScrnSaver          abi_x86_32
+x11-libs/libxshmfence           abi_x86_32
+x11-libs/libXtst                abi_x86_32
+x11-libs/libXxf86vm             abi_x86_32
+x11-libs/pango                  abi_x86_32
+x11-libs/pixman                 abi_x86_32
+x11-libs/xcb-util-keysyms       abi_x86_32
+sys-libs/gdbm			abi_x86_32
+sys-libs/readline		abi_x86_32
+
+dev-db/sqlite 			abi_x86_32
+dev-util/spirv-tools		abi_x86_32
+gui-libs/egl-wayland		abi_x86_32
+gui-libs/egl-x11		abi_x86_32
+gui-libs/egl-gbm		abi_x86_32
+
+## MEDIA APPS ##
+net-im/vesktop-bin		libnotify

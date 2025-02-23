@@ -1,0 +1,8 @@
+git
+fzf
+fd
+ripgrep
+fish
+ghostty
+neovim
+just
