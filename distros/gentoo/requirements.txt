@@ -1,6 +1,7 @@
 git
 fzf
 fd
+lazygit
 ripgrep
 fish
 ghostty

@@ -282,3 +282,7 @@ gui-libs/egl-gbm		abi_x86_32
 
 ## MEDIA APPS ##
 net-im/vesktop-bin		libnotify
+
+
+## Coding languages that I want to run ##
+dev-lang/rust-bin rust-analyzer rust-src rustfmt
