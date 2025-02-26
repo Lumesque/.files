@@ -11,7 +11,7 @@ return {
 			map.set("t", "<C-w><esc>", "<C-\\><C-n>:FloatermHide<CR>")
 			map.set("t", "<C-w><q>", [[<C-\><C-n>:FloatermKill<CR>]])
 			map.set("t", "<C-w>n", "<C-\\><C-n>:FloatermNext<CR>")
-			map.set("t", "<C-w>p", "<C-\\><C-n>:FloatermPrevious<CR>")
+			map.set("t", "<C-w>p", "<C-\\><C-n>:FloatermPrev<CR>")
 			map.set("t", "<C-w><leader>tn", "<C-\\><C-n>:FloatermNew<CR>")
 			map.set("t", "<C-w><leader>tq", "<C-\\><C-n>:FloatermKill<CR>")
 			vim.cmd([[FloatermNew --silent]])
