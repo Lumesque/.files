@@ -6,4 +6,5 @@ ripgrep
 fish
 ghostty
 nvim | neovim
+bat
 just
