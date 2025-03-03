@@ -1,10 +1,11 @@
 git
 fzf
 fd
-lazygit
 ripgrep
+lazygit
 fish
 ghostty
 neovim
 bat
+mpv
 just

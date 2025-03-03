@@ -282,6 +282,7 @@ gui-libs/egl-gbm		abi_x86_32
 
 ## MEDIA APPS ##
 net-im/vesktop-bin		libnotify
+gui-apps/wf-recorder		pipewire
 
 
 ## Coding languages that I want to run ##

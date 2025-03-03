@@ -58,7 +58,9 @@ setup-distro-pkgs distro cmd:
     [ -d ./distros/{{distro}} ]
     -rm -f ./distros/{{distro}}/requirements.txt
     for i in $(cat ./requirements.txt | tr '|' '\n') ; do \
-        if {{cmd}} $i ; then \
+        if [ -z "${i%%#*}" ] ; then \
+            continue ; \
+        elif {{cmd}} $i ; then \
             echo "$i" >> ./distros/{{distro}}/requirements.txt ; \
         fi \
     done
