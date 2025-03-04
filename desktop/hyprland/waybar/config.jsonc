@@ -1,125 +1,106 @@
 {
-    "position": "top",
     "layer": "top",
-    "height": 16,
-    "margin-top": 0,
+    "spacing": 0,
+    "height": 0,
+
+    "margin-top": 8,
+    "margin-right": 8,
     "margin-bottom": 0,
-    "margin-left": 0,
-    "margin-right": 0,
-    "modules-left": ["custom/launcher", "hyprland/workspaces", "disk"],
-    "modules-center": ["tray", "cpu", "memory"],
-    "modules-right": ["custom/headphones", "custom/speakers", "custom/hyprpicker", "wireplumber", "clock"],
-    // Modules configuration
-	"clock": {
-		"format": " {:%H:%M}",
-		"tooltip": "true",
-        	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        	"format-alt": " {:%m/%d}",
-		"timezone": "EST"
-	},
-	"hyprland/workspaces": {
-        "active-only": false,
+    "margin-left": 8,
+
+    "modules-left": [
+        "sway/workspaces"
+    ],
+
+    "modules-center": [
+        "clock"
+    ],
+
+    "modules-right": [
+        "tray",
+        "cpu_text",
+        "cpu",
+        "memory",
+        "network",
+        "wireplumber",
+        "custom/speakers",
+        "custom/headphones",
+    ],
+
+    "sway/workspaces": {
+        "disable-scroll": true,
         "all-outputs": true,
-        "disable-scroll": false,
-        "on-scroll-up": "hyprctl dispatch workspace -1",
-        "on-scroll-down": "hyprctl dispatch workspace +1",
-		"format": "{icon}",
-		"on-click": "activate",
-		"format-icons": {
-			"urgent": "",
-			"active": "",
-			"default": "󰧞",
-    	"sort-by": "number"
-    	},
+        "tooltip": false
     },
 
-    "memory": {
-        "format": "󰍛 {}%",
-        "format-alt": "󰍛 {used}/{total} GiB",
-        "interval": 5
+    "tray": {
+        "spacing": 10,
+        "tooltip": false
+    },
+
+    "clock": {
+        "format": "{:%I:%M %p - %a, %d %b %Y}",
+        "tooltip": false
     },
 
     "cpu": {
-        "format": "󰻠 {usage}%",
-        "format-alt": "󰻠 {avg_frequency} GHz",
-        "interval": 5
+        "format": "cpu {usage}%",
+        "interval": 2,
+
+        "states": {
+            "critical": 90
+        }
     },
 
-    "disk": {
-        "format": "󰋊 {}%",
-        "format-alt": "󰋊 {used}/{total} GiB",
-        "interval": 5,
-        "path": "/"
+    "memory": {
+        "format": "mem {percentage}%",
+        "interval": 2,
+
+        "states": {
+            "critical": 80
+        }
     },
 
     "network": {
-        "format-wifi": "󰤨",
-        "format-ethernet": " {ifname}: Aesthetic",
-        "format-linked": " {ifname} (No IP)",
-        "format-disconnected": "󰤭",
-        "format-alt": " {ifname}: {ipaddr}/{cidr}",
-        "tooltip-format": "{essid}",
-        "on-click-right": "nm-connection-editor"
-	},
-
-	"tray": {
-		"icon-size": 16,
-		"spacing": 5,
-	},
+        "format-wifi" : "wifi {bandwidthDownBits}",
+        "format-ethernet": "enth {bandwidthDownBits}",
+        "format-disconnected" : "no network",
+        "interval": 5,
+        "tooltip": false
+    },
 
     "wireplumber": {
-        "format": "{icon} {volume}%",
-        "format-muted": "󰝟",
-        "format-icons": {
-            "default": ["󰕿", "󰖀", "󰕾"]
-        },
-        "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
+        "scroll-step": 5,
+        "format": "vol {volume}%",
+        "format-muted": "vol x",
+        "format-bluetooth": "vol {volume}%",
+        "nospacing": 1,
+        "max-volume": 100,
         "on-scroll-up": "wpctl set-volume @DEFAULT_SINK@ .05+",
         "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ .05-",
-        "scroll-step": 5,
-        "on-click-right": "pavucontrol",
-        "max-volume": 100,
-        "menu": "pavucontrol"
+        "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
+        "tooltip": false
     },
 
     "custom/speakers": {
-        "format": "{icon}",
-        "format-icons": {
-            "default": ["🔈"]
-        },
-        "on-click": "~/.config/waybar/scripts/change-player.sh -s",
+        "format": "s",
+        "exec": "~/.config/waybar/scripts/get-class.sh -s 2> /dev/null",
+        "exec-on-event": true,
+        "return-type": "json",
+        "on-click": "~/.config/waybar/scripts/change-player.sh -s 2> /dev/null",
+        "interval": 1,
 		"tooltip": "true",
         "tooltip-format": "Set to speakers",
     },
+
     "custom/headphones": {
-        "format": "{icon}",
-        "format-icons": {
-            "default": ["🎧"]
-        },
-        "on-click": "~/.config/waybar/scripts/change-player.sh -h",
+        "format": "h",
+        "exec": "~/.config/waybar/scripts/get-class.sh -h 2> /dev/null",
+        "exec-on-event": true,
+        "return-type": "json",
+        "on-click": "~/.config/waybar/scripts/change-player.sh -h 2> /dev/null",
+        "interval": 1,
 		"tooltip": "true",
         "tooltip-format": "Set to headphones",
-    },
-    "custom/launcher": {
-        "format": "󰈸",
-        "on-click": "fuzzel",
-        "on-click-right": "fuzzel"
-    },
-
-    "custom/wf-recorder": {
-		"format": "{}",
-		"interval": "once",
-		"exec": "echo ''",
-		"tooltip": "false",
-		"exec-if": "pgrep 'wf-recorder'",
-		"on-click": "exec ./scripts/wlrecord.sh",
-		"signal": 8
-    },
-
-    "custom/hyprpicker": {
-        "format": "󰈋",
-        "on-click": "hyprpicker -a -f hex",
-        "on-click-right": "hyprpicker -a -f rgb"
-    },
-  }
+    }
 }
