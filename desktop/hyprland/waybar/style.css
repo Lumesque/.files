@@ -50,6 +50,10 @@ tooltip {
     color: #ddc7a1;
 }
 
+#workspaces button.active {
+    color: #ddc7a1;
+}
+
 #workspaces button.urgent {
     background-color: #e78a4e;
 }

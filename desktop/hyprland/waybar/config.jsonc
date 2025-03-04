@@ -9,7 +9,7 @@
     "margin-left": 8,
 
     "modules-left": [
-        "sway/workspaces"
+        "hyprland/workspaces"
     ],
 
     "modules-center": [
@@ -27,7 +27,7 @@
         "custom/headphones",
     ],
 
-    "sway/workspaces": {
+    "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
         "tooltip": false
