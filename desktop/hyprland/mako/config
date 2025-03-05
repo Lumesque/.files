@@ -1,0 +1,7 @@
+default-timeout=3000
+background-color=#ddc7a1
+text-color=#1d2021
+border-radius=5
+
+[actionable=true]
+on-button-right=exec makoctl menu -n "${id}" fuzzel --dmenu

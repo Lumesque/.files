@@ -25,6 +25,4 @@ while getopts ":hs" opt ; do
     esac
 done
 
-
-echo "Setting class to $class" >> ~/.config/waybar/test.txt
 jq --arg cls "$class" --null-input --unbuffered --compact-output '{"class": $cls}'
