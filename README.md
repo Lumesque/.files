@@ -11,6 +11,7 @@
 - [Editors](#editors)
 - [Terminals](#terminals)
 - [Shells](#shells)
+- [Misc](#misc)
 
 
 ### About
@@ -83,3 +84,6 @@ The current supported shells are:
     * This comes with some functions for git pushing, ls overrides, neovim with fzf, and some common commands with 'fd'
     * See `shells/fish/functions` to see more
         1. This may seem very large, but any of the self-made functions do not have a '_' appendedto them except for the 'fzf_configure' and the 'fish_' ones
+
+### Misc
+Current configs that are miscellanious, and not for specific installs but for specific programs, are put into misc. The current one right now only supported is lazygit, which changes the spinner.
