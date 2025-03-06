@@ -21,9 +21,11 @@ tooltip {
 #clock,
 #tray,
 #cpu,
+#disk,
 #memory,
 #battery,
 #network,
+#mpd,
 #wireplumber,
 #custom-speakers,
 #custom-headphones
@@ -94,6 +96,7 @@ tooltip {
 #cpu,
 #memory,
 #network,
+#disk,
 #wireplumber {
     background-color: #ddc7a1;
     border: 2px solid #c7ab7a;

@@ -9,7 +9,9 @@
     "margin-left": 8,
 
     "modules-left": [
-        "hyprland/workspaces"
+        "hyprland/workspaces",
+        "custom/headphones",
+        "custom/speakers",
     ],
 
     "modules-center": [
@@ -18,24 +20,30 @@
 
     "modules-right": [
         "tray",
-        "cpu_text",
+        "disk",
         "cpu",
         "memory",
         "network",
         "wireplumber",
-        "custom/speakers",
-        "custom/headphones",
     ],
 
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
+        "active-only": false,
         "tooltip": false
     },
 
     "tray": {
         "spacing": 10,
         "tooltip": false
+    },
+    
+    "disk": {
+        "interval": 60,
+        "unit": "GB",
+        "format": "disk {percentage_used}%",
+        "format-alt": "free {specific_free:.2f}/{specific_total:.2f}",
     },
 
     "clock": {
