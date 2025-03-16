@@ -50,3 +50,18 @@ window-decoration = none
 
 ## Disable ctrl-w-shift keybind that closes terminal
 keybind = ctrl+shift+w=ignore
+
+# This one is nicer than the other one, kinda laid back enough that ti's prob worth a shot
+# Taken from hackr-sh/ghostty-shaders
+#custom-shader = ./ghostty-shaders/bettercrt.glsl 
+
+# This one is nice for having some blob in the background
+#custom-shader = ./ghostty-shaders/cineShader-Lava.glsl
+#
+#   This one gives me ps2 vibes
+#custom-shader = ./ghostty-shaders/cubes.glsl
+#
+# This one is just cool lookin with different colors
+#custom-shader = ./ghostty-shaders/fireworks.glsl
+#
+custom-shader = ./ghostty-shaders/underwater.glsl
