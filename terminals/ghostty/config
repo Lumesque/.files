@@ -42,7 +42,8 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-theme = "Ciapre"
+#theme = "Ciapre"
+theme = "NvimLight"
 
 confirm-close-surface = false
 
@@ -64,4 +65,4 @@ keybind = ctrl+shift+w=ignore
 # This one is just cool lookin with different colors
 #custom-shader = ./ghostty-shaders/fireworks.glsl
 #
-custom-shader = ./ghostty-shaders/underwater.glsl
+#custom-shader = ./ghostty-shaders/underwater.glsl
