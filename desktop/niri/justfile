@@ -1,0 +1,8 @@
+install:
+    cp -r ./niri ~/.config/
+
+sync:
+    cp -r ~/.config/niri .
+
+clean:
+    rm -rf ~/.config/niri
