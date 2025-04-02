@@ -186,7 +186,8 @@ layout {
         active-color "#7fc8ff"
 
         // Color of the ring on inactive monitors.
-        inactive-color "#505050"
+        // inactive-color "#505050"
+	inactive-color "#505050"
 
         // You can also use gradients. They take precedence over solid colors.
         // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
@@ -345,9 +346,16 @@ window-rule {
 
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
-/-window-rule {
+window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
+}
+
+// Change opacity on non-focused windows
+// To see all available options, go to https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+window-rule {
+    match is-focused=false
+    opacity 0.7
 }
 
 binds {
