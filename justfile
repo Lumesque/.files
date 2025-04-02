@@ -79,6 +79,18 @@ install-gentoo:
 clean-gentoo: 
     just clean distros gentoo
 
+[group('niri')]
+install-niri:
+    just install desktop niri
+
+[group('niri')]
+sync-niri:
+    just sync desktop niri
+
+[group('niri')]
+clean-niri:
+    just clean desktop niri
+
 [group('hyprland')]
 install-hyprland:
     just install desktop hyprland
