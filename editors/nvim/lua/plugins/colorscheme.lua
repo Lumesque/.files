@@ -5,7 +5,7 @@ return {
 		priority = 1000,
 		config = function()
 			require("luma").setup({
-				theme = "light",
+				theme = "dark",
 				contrast = "high",
 			})
 			vim.cmd([[colorscheme luma]])
