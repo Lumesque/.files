@@ -26,15 +26,19 @@ tooltip {
 #battery,
 #network,
 #mpd,
-#wireplumber,
 #custom-speakers,
-#custom-headphones
+#custom-headphones,
+#custom-focusleft,
+#custom-focusright,
+#wireplumber
 {
     margin: 6px 6px 6px 0px;
     padding: 2px 8px;
 }
 
-#workspaces {
+
+#workspaces
+{
     background-color: #303536;
     margin: 6px 0px 6px 6px;
     border: 2px solid #434a4c;
@@ -93,10 +97,19 @@ tooltip {
     transition: .25s ease-in
 }
 
+#custom-focusleft:hover,
+#custom-focusright:hover
+{
+    opacity: .7;
+    transition: .25s ease-in;
+}
+
 #cpu,
 #memory,
 #network,
 #disk,
+#custom-focusleft,
+#custom-focusright,
 #wireplumber {
     background-color: #ddc7a1;
     border: 2px solid #c7ab7a;

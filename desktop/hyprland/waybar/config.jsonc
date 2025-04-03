@@ -10,6 +10,9 @@
 
     "modules-left": [
         "hyprland/workspaces",
+        "niri/workspaces",
+        "custom/focusleft",
+        "custom/focusright",
         "custom/headphones",
         "custom/speakers",
     ],
@@ -28,6 +31,13 @@
     ],
 
     "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "active-only": false,
+        "tooltip": false
+    },
+    
+    "niri/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
         "active-only": false,
@@ -97,7 +107,7 @@
         "return-type": "json",
         "on-click": "~/.config/waybar/scripts/change-player.sh -s 2> /dev/null",
         "interval": 1,
-		"tooltip": "true",
+	"tooltip": "true",
         "tooltip-format": "Set to speakers",
     },
 
@@ -108,7 +118,21 @@
         "return-type": "json",
         "on-click": "~/.config/waybar/scripts/change-player.sh -h 2> /dev/null",
         "interval": 1,
-		"tooltip": "true",
+	"tooltip": "true",
         "tooltip-format": "Set to headphones",
-    }
+    },
+
+    "custom/focusleft": {
+        "format": "Focus Left",
+        "on-click": "niri msg action focus-column-left",
+        "tooltip": "true",
+        "tooltip-format": "Focus left column",
+    },
+
+    "custom/focusright": {
+        "format": "Focus Right",
+        "on-click": "niri msg action focus-column-right",
+        "tooltip": "true",
+        "tooltip-format": "Focus right column",
+    },
 }
