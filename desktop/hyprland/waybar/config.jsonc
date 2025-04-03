@@ -28,6 +28,7 @@
         "memory",
         "network",
         "wireplumber",
+        "custom/misc",
     ],
 
     "hyprland/workspaces": {
@@ -134,5 +135,19 @@
         "on-click": "niri msg action focus-column-right",
         "tooltip": "true",
         "tooltip-format": "Focus right column",
+    },
+
+    "custom/misc": {
+        "format": ":::",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "~/.config/waybar/resources/misc_menu.xml",
+        "menu-actions": {
+            "fuzzel": "niri msg action spawn -- 'fuzzel'",
+            "terminal": "niri msg action spawn -- 'ghostty'",
+            "browser": "niri msg action spawn -- '/usr/bin/zen-bin'",
+            "lock": "swaylock",
+            "shutdown": "shutdown -h now",
+        },
     },
 }

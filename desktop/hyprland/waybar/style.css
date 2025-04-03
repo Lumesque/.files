@@ -30,6 +30,7 @@ tooltip {
 #custom-headphones,
 #custom-focusleft,
 #custom-focusright,
+#custom-misc,
 #wireplumber
 {
     margin: 6px 6px 6px 0px;
@@ -104,12 +105,14 @@ tooltip {
     transition: .25s ease-in;
 }
 
+menu,
 #cpu,
 #memory,
 #network,
 #disk,
 #custom-focusleft,
 #custom-focusright,
+#custom-misc,
 #wireplumber {
     background-color: #ddc7a1;
     border: 2px solid #c7ab7a;
