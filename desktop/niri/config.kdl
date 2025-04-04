@@ -6,6 +6,8 @@
 // Environment configuration
 environment {
     XCURSOR_SIZE "24"
+    // Allow for steam
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
 
     HYPRCURSOR_SIZE "12"
     LIBVA_DRIVER_NAME "nvidia"
@@ -19,7 +21,6 @@ environment {
     ANV_QUEUE_THREAD_DISABLE "1"
     QT_QPA "PLATFORM,wayland"
     CLUTTER_BACKEND "wayland"
-    SDL_VIDEODRIVER "wayland"
     XDG_CURRENT_DESKTOP "niri"
     XDG_SESSION_DESKTOP "niri"
     MOZ_ENABLE_WAYLAND "1"
@@ -356,6 +357,12 @@ window-rule {
 window-rule {
     match is-focused=false
     opacity 0.7
+}
+
+// Allow steam games to open floating position relative to screen
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
 }
 
 binds {
