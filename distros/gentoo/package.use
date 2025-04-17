@@ -101,8 +101,8 @@ media-libs/libepoxy X egl
 x11-libs/gdk-pixbuf introspection
 media-libs/libass fontconfig
 # media-libs/libsdl2 sound video opengl gles2 X
-media-libs/libsdl2 sound video opengl X
-media-libs/mesa X wayland
+media-libs/libsdl2 sound video opengl X vulkan
+media-libs/mesa X wayland vulkan
 # media-libs/mesa gles2 X
 dev-libs/boost zlib nls icu
 media-libs/lsp-plugins lv2
@@ -280,10 +280,35 @@ gui-libs/egl-wayland		abi_x86_32
 gui-libs/egl-x11		abi_x86_32
 gui-libs/egl-gbm		abi_x86_32
 
+games-util/steam-launcher	wayland
+
+### Wine emulator
+media-libs/vulkan-loader	abi_x86_32 X wayland
+media-libs/gst-plugins-base	abi_x86_32 X wayland opengl
+media-libs/gst-plugins-good	abi_x86_32 X wayland
+media-libs/gstreamer		abi_x86_32 X wayland
+sys-libs/libunwind		abi_x86_32 X wayland
+media-plugins/gst-plugins-meta  abi_x86_32 X wayland
+dev-lang/orc			abi_x86_32 X wayland
+sys-libs/zlib			static-libs
+x11-libs/libXv			abi_x86_32 X wayland
+media-libs/graphene		abi_x86_32 X wayland
+virtual/wine			proton
+app-emulation/wine-vanilla	wayland
+
 ## MEDIA APPS ##
 net-im/vesktop-bin		libnotify
 gui-apps/wf-recorder		pipewire
+media-sound/spotify		libnotify
 
 
 ## Coding languages that I want to run ##
 dev-lang/rust-bin rust-analyzer rust-src rustfmt
+
+## Science sim libs
+sci-libs/fftw threads fortran
+
+## Nix requirements libraries
+virtual/libcrypt static-libs
+sys-libs/libxcrypt static-libs
+dev-libs/boehm-gc cxx

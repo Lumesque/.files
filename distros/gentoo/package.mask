@@ -11,3 +11,6 @@ sys-kernel/gentoo-kernel
 # This is required for steam currently as of 02/08/2025
 # UPDATE this is no longer required, as it was a case of the X flag that was missing
 #>=sys-apps/dbus-1.16.0
+#
+# Waiting for packages to catch up, 04/10/2025
+dev-qt/*:6/6.9.0
