@@ -13,4 +13,19 @@ sys-kernel/gentoo-kernel
 #>=sys-apps/dbus-1.16.0
 #
 # Waiting for packages to catch up, 04/10/2025
-dev-qt/*:6/6.9.0
+
+=dev-qt/qtbase-6.9.0*
+=dev-qt/qtbase-6.9.0-r1::gentoo
+=dev-qt/qtwayland-6*
+
+=dev-qt/qtsvg-6.9.0::gentoo
+=kde-plasma/libplasma-6.3.5::gentoo
+=kde-plasma/polkit-kde-agent-6.3.5::gentoo
+#=kde-frameworks/kauth-6.13.0::gentoo[policykit]
+#=kde-frameworks/kio-6.13.0-r1::gentoo
+=kde-frameworks/kcmutils-6.13.0::gentoo
+=kde-plasma/keditfiletype-6.3.5::gentoo
+=kde-frameworks/kauth-6.13.0::gentoo
+# =kde-frameworks/kio-6.13.0-r1::gentoo
+#
+=kde-frameworks/kiconthemes-6.13.0::gentoo

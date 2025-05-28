@@ -37,9 +37,12 @@ media-libs/freetype adobe-cff cleartype-hinting harfbuzz truetype png
 media-libs/harfbuzz glib icu truetype cairo graphite introspection
 
 # CLANG ENVIRONMENT (needed for compiling firefox or other PGO programs) #
-sys-devel/clang-runtime compiler-rt sanitize
-sys-devel/clang-common default-compiler-rt default-lld
-sys-libs/compiler-rt-sanitizers profile orc
+# move sys-devel/clang-runtime llvm-core/clang-runtime
+llvm-core/clang-runtime compiler-rt sanitize default-lld default-compiler-rt
+# move sys-devel/clang-common llvm-core/clang-common
+llvm-core/clang-common default-compiler-rt default-lld
+# move sys-libs/compiler-rt-sanitizers llvm-runtimes/compiler-rt-sanitizers
+llvm-runtimes/compiler-rt-sanitizers profile orc
 sys-libs/libunwind static-libs
 
 # WORLD PACKAGES #
@@ -224,7 +227,8 @@ sys-apps/dbus                   abi_x86_32 X
 sys-apps/systemd                abi_x86_32
 sys-apps/systemd-utils          abi_x86_32
 sys-apps/util-linux             abi_x86_32
-sys-devel/clang                 abi_x86_32
+# move sys-devel/clang llvm-core/clang
+llvm-core/clang                 abi_x86_32
 sys-libs/gpm                    abi_x86_32
 sys-libs/libcap                 abi_x86_32
 sys-libs/libudev-compat         abi_x86_32
@@ -312,3 +316,20 @@ sci-libs/fftw threads fortran
 virtual/libcrypt static-libs
 sys-libs/libxcrypt static-libs
 dev-libs/boehm-gc cxx
+
+## Virtual Viewer ##
+# required by app-emulation/libvirt-11.2.0-r1::gentoo[virt-network]
+# required by dev-python/libvirt-python-11.2.0::gentoo
+>=net-dns/dnsmasq-2.91 script
+# required by app-crypt/swtpm-0.10.0-r1::gentoo
+# required by app-emulation/libvirt-11.2.0-r1::gentoo[qemu]
+# required by dev-python/libvirt-python-11.2.0::gentoo
+>=net-libs/gnutls-3.8.9-r1 tools pkcs11
+# required by net-libs/gnutls-3.8.9-r1::gentoo[pkcs11]
+# required by net-libs/gtk-vnc-1.3.1-r1::gentoo
+# required by app-emulation/virt-viewer-11.0-r1::gentoo[vnc]
+# required by virt-viewer (argument)
+>=app-crypt/p11-kit-0.25.5 abi_x86_32
+
+# Required for specific new cairo
+dev-python/pycairo X
