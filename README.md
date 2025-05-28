@@ -18,7 +18,6 @@
 Currently these dotfiles are setup to run and generate softlinks for mainly hyprland and gentoo.
 The justfile is made to be able to install from any of the folders to your willingness, and the dotfile repository is made to stay on your system except for cases of desktops and initial setups for distros
 
-
 ### Installing
 Currently there are 5 installations that are present, each meant to represent one installation, and each have either one of two types, that being:
 1. Those that are softlinked
